@@ -3,18 +3,22 @@ import reactLogo from './assets/react.svg'
 import Icon from './components/Icon'
 import Input from './components/Input'
 import Button from './components/Button'
-import './App.css' // Import CSS for styles
+import WcagTree from './components/WcagTree'
+import FilterTags from './components/FilterTags'
+import { wcagData, type FilterTag } from './wcag-data'
+import './App.css'
 
 const App: React.FC = () => {
-	const [rectCount, setRectCount] = useState<number>(5)
 	const [nodeCount, setNodeCount] = useState<number>(0)
+	const [selectedTags, setSelectedTags] = useState<FilterTag[]>([])
+	const [searchTerm, setSearchTerm] = useState<string>('')
 
-	const createRectangles = (count: number) => {
+	const checkAccessibility = () => {
 		window.parent.postMessage(
 			{
 				pluginMessage: {
-					type: 'CREATE_RECTANGLES',
-					count,
+					type: 'CHECK_ACCESSIBILITY',
+					tags: selectedTags,
 				},
 			},
 			'*',
@@ -40,20 +44,33 @@ const App: React.FC = () => {
 			<div className="banner">
 				<Icon svg="plugma" size={38} />
 				<Icon svg="plus" size={24} />
-				<img src={reactLogo} width="44" height="44" alt="Svelte logo" />
+				<img src={reactLogo} width="44" height="44" alt="A11y Assistant" />
 			</div>
 
-			<div className="field create-rectangles">
+			<div className="field search">
 				<Input
-					type="number"
-					value={rectCount.toString()}
-					onChange={(e) => setRectCount(Number(e))}
+					type="text"
+					placeholder="Search guidelines..."
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e)}
 				/>
-				<Button onClick={() => createRectangles(rectCount)}>Create Rectangles</Button>
 			</div>
+
+			<FilterTags
+				selectedTags={selectedTags}
+				onTagsChange={setSelectedTags}
+			/>
+
 			<div className="field node-count">
 				<span>{nodeCount} nodes selected</span>
+				<Button onClick={checkAccessibility}>Check Accessibility</Button>
 			</div>
+
+			<WcagTree
+				data={wcagData}
+				selectedTags={selectedTags}
+				searchTerm={searchTerm}
+			/>
 		</div>
 	)
 }
