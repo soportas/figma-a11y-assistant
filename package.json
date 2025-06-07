@@ -1,0 +1,50 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "plugma dev",
+		"build": "plugma build",
+		"preview": "plugma preview",
+		"release": "plugma release"
+	},
+	"dependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.28.0",
+		"@types/react": "^19.1.6",
+		"@types/react-dom": "^19.1.6",
+		"@vitejs/plugin-react": "^4.5.1",
+		"eslint": "^9.28.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-react-refresh": "^0.4.20",
+		"globals": "^16.2.0",
+		"typescript": "~5.8.3",
+		"typescript-eslint": "^8.33.1",
+		"vite": "^6.3.5",
+		"@figma/plugin-typings": "^1.113.0",
+		"plugma": "^1.2.9"
+	},
+	"plugma": {
+		"manifest": {
+			"id": "figma-a11y-assistant-replace",
+			"name": "figma-a11y-assistant",
+			"main": "src/main.ts",
+			"ui": "src/ui.tsx",
+			"editorType": [
+				"figma",
+				"figjam"
+			],
+			"networkAccess": {
+				"allowedDomains": [
+					"none"
+				],
+				"devAllowedDomains": [
+					"http://localhost:*",
+					"ws://localhost:9001"
+				]
+			}
+		}
+	}
+}
