@@ -46,8 +46,8 @@ const App: React.FC = () => {
 			<div className="field create-rectangles">
 				<Input
 					type="number"
-					value={rectCount}
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRectCount(Number(e.target.value))}
+					value={rectCount.toString()}
+					onChange={(e) => setRectCount(Number(e))}
 				/>
 				<Button onClick={() => createRectangles(rectCount)}>Create Rectangles</Button>
 			</div>

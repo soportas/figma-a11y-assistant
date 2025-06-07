@@ -28,7 +28,7 @@
 	},
 	"plugma": {
 		"manifest": {
-			"id": "figma-a11y-assistant-replace",
+			"id": "figma-a11y-assistant",
 			"name": "figma-a11y-assistant",
 			"main": "src/main.ts",
 			"ui": "src/ui.tsx",
